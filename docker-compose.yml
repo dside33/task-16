@@ -1,0 +1,17 @@
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: Dockerfile.apache
+    container_name: apache-dc
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx-dc
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - apache
