@@ -1,0 +1,3 @@
+[submodule "task16-jenkins"]
+	path = task16-jenkins
+	url = git@github.com:dside33/task16-jenkins.git
