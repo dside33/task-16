@@ -6,7 +6,7 @@ services:
     container_name: apache-dc
 
   nginx:
-    image: 1side/nginx-jenkins:46
+    image: 1side/nginx-jenkins:${TAG}
     container_name: nginx-dc
     ports:
       - "80:80"
