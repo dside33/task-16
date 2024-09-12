@@ -6,9 +6,7 @@ services:
     container_name: apache-dc
 
   nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile.nginx
+    image: 1side/nginx-jenkins:${TAG}
     container_name: nginx-dc
     ports:
       - "80:80"
