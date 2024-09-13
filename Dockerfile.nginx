@@ -1,15 +1,17 @@
 FROM nginx:1.27.1-alpine
 
-RUN apk add --no-cache nginx-mod-http-image-filter \
-    && adduser -D -G www-data www-data && \
-    chown -R www-data:www-data /var/cache/nginx && \
+RUN addgroup -S nginxuser && adduser -S -G nginxuser nginxuser
+RUN touch /run/nginx.pid && \
+    chown -R nginxuser:nginxuser /run/nginx.pid && \
+    apk add --no-cache nginx-mod-http-image-filter && \
+    chown -R nginxuser:nginxuser /var/cache/nginx && \
     chmod -R 700 /var/cache/nginx
 
 COPY main-nginx.conf /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY site1 /var/www/html/site1
 
-USER www-data
+USER nginxuser
 
 EXPOSE 80
 EXPOSE 443
